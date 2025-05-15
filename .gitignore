@@ -1,0 +1,10 @@
+# Ignore folder target/ dari semua project Cargo
+**/target/
+
+# File sistem (opsional)
+.DS_Store
+.idea/
+.vscode/
+
+# Jangan ignore .gitignore di tiap project
+!.gitignore
