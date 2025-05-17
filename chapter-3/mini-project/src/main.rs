@@ -9,7 +9,8 @@ fn main() {
         println!("\n1. Konversi suhu");
         println!("2. Generate angka fibonacci");
         println!("3. Deret Aritmatika");
-        println!("4. Keluar\n");
+        println!("4. Hitung Body Mass Index (BMI)");
+        println!("5. Keluar\n");
         oneline_input();
 
         let mut pilih_menu = String::new();
@@ -147,7 +148,29 @@ fn main() {
                 Err(_) => println!("Error: masukkan angka yang valid\n"),
             };
         } else if pilih_menu == 3 {
-            println!("Panggil fungsi untuk print lirik lagu");
+            // Input Suku Pertama (a)
+            print!("Suku pertama: ");
+            io::stdout().flush().unwrap();
+            let mut a = String::new();
+            io::stdin().read_line(&mut a).unwrap();
+            let a: i32 = a.trim().parse().unwrap();
+
+            // Input Selisih Angka (b)
+            print!("Selisih angka: ");
+            io::stdout().flush().unwrap();
+            let mut b = String::new();
+            io::stdin().read_line(&mut b).unwrap();
+            let b: i32 = b.trim().parse().unwrap();
+
+            // Input Jumlah Suku (n)
+            print!("Jumlah suku: ");
+            io::stdout().flush().unwrap();
+            let mut n = String::new();
+            io::stdin().read_line(&mut n).unwrap();
+            let n: i32 = n.trim().parse().unwrap();
+
+            println!("\nSuku ke {} adalah {}", n, suku_ke_n(a, b, n));
+            println!("Jumlah {} suku pertama: {}", n, jumlah_n_suku(a, b, n));
         } else if pilih_menu == 4 {
             println!("Keluar dari program");
             break;
@@ -190,4 +213,12 @@ fn fibonacci(n: u32) -> u32 {
         1 => 1,
         _ => fibonacci(n - 1) + fibonacci(n - 2),
     }
+}
+
+fn suku_ke_n(a: i32, b: i32, n: i32) -> i32 {
+    a + (n - 1) * b
+}
+
+fn jumlah_n_suku(a: i32, b: i32, n: i32) -> i32 {
+    n * (2 * a + (n - 1) * b) / 2
 }
