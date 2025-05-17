@@ -148,21 +148,21 @@ fn main() {
                 Err(_) => println!("Error: masukkan angka yang valid\n"),
             };
         } else if pilih_menu == 3 {
-            // Input Suku Pertama (a)
+            // Input suku Pertama (a)
             print!("Suku pertama: ");
             io::stdout().flush().unwrap();
             let mut a = String::new();
             io::stdin().read_line(&mut a).unwrap();
             let a: i32 = a.trim().parse().unwrap();
 
-            // Input Selisih Angka (b)
+            // Input selisih Angka (b)
             print!("Selisih angka: ");
             io::stdout().flush().unwrap();
             let mut b = String::new();
             io::stdin().read_line(&mut b).unwrap();
             let b: i32 = b.trim().parse().unwrap();
 
-            // Input Jumlah Suku (n)
+            // Input jumlah Suku (n)
             print!("Jumlah suku: ");
             io::stdout().flush().unwrap();
             let mut n = String::new();
@@ -172,7 +172,38 @@ fn main() {
             println!("\nSuku ke {} adalah {}", n, suku_ke_n(a, b, n));
             println!("Jumlah {} suku pertama: {}", n, jumlah_n_suku(a, b, n));
         } else if pilih_menu == 4 {
-            println!("Keluar dari program");
+            // input berat (kg)
+            print!("Berat anda (kg): ");
+            io::stdout().flush().unwrap();
+            let mut berat = String::new();
+            io::stdin().read_line(&mut berat).unwrap();
+            let berat: f64 = berat.trim().parse().unwrap();
+
+            // input tinggi (cm)
+            print!("Tinggi anda (cm): ");
+            io::stdout().flush().unwrap();
+            let mut tinggi = String::new();
+            io::stdin().read_line(&mut tinggi).unwrap();
+            let tinggi: f64 = tinggi.trim().parse().unwrap();
+            let tinggi_meter = tinggi / 100.0;
+
+            // hitung bmi
+            let bmi = berat / tinggi_meter.powi(2);
+            println!("BMI anda: {:.2}", bmi);
+
+            let kategori = if bmi < 18.5 {
+                "Kurus"
+            } else if bmi < 25.0 {
+                "Normal"
+            } else if bmi < 30.0 {
+                "Gemuk"
+            } else {
+                "Obesitas"
+            };
+
+            println!("Kamu termasuk kategori: {}", kategori);
+        } else if pilih_menu == 5 {
+            println!("\nKeluar dari program");
             break;
         }
     }
