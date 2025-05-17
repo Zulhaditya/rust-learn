@@ -8,7 +8,7 @@ fn main() {
         // menu utama
         println!("\n1. Konversi suhu");
         println!("2. Generate angka fibonacci");
-        println!("3. Print lirik lagu");
+        println!("3. Deret Aritmatika");
         println!("4. Keluar\n");
         oneline_input();
 
@@ -129,7 +129,23 @@ fn main() {
                 continue;
             }
         } else if pilih_menu == 2 {
-            println!("Panggil fungsi generate angka fibonacci.");
+            print!("Input angka: ");
+            io::stdout().flush().expect("Gagal menampilkan prompt!");
+
+            let mut angka_fibonacci = String::new();
+
+            io::stdin()
+                .read_line(&mut angka_fibonacci)
+                .expect("Gagal membaca data!");
+
+            match angka_fibonacci.trim().parse::<u32>() {
+                Ok(angka_fibonacci) => println!(
+                    "Fibonacci ke-{} adalah {}",
+                    angka_fibonacci,
+                    fibonacci(angka_fibonacci)
+                ),
+                Err(_) => println!("Error: masukkan angka yang valid\n"),
+            };
         } else if pilih_menu == 3 {
             println!("Panggil fungsi untuk print lirik lagu");
         } else if pilih_menu == 4 {
@@ -166,4 +182,12 @@ fn f_to_k(f: f32) -> f32 {
 
 fn k_to_f(k: f32) -> f32 {
     (k - 273.15) * 9.0 / 5.0 + 32.0
+}
+
+fn fibonacci(n: u32) -> u32 {
+    match n {
+        0 => 0,
+        1 => 1,
+        _ => fibonacci(n - 1) + fibonacci(n - 2),
+    }
 }
