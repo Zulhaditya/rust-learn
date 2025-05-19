@@ -31,4 +31,11 @@ fn main() {
         email: String::from("another@example.com"),
         ..user1
     };
+
+    // struct with tuple
+    struct Warna(i32, i32, i32);
+    struct Point(i32, i32, i32);
+
+    let black = Warna(0, 0, 0);
+    let origin = Point(0, 0, 0);
 }
